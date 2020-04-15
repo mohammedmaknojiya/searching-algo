@@ -1,0 +1,164 @@
+class node:
+    __slots__ = "data","left","right"
+
+    def __init__(self,data,left=None,right=None):
+        self.data=data
+        self.left=None
+        self.right=None
+
+
+
+def insert_node(rootelement,newnode):
+    if rootelement==None:
+        rootelement=newnode
+
+    else:
+
+        if rootelement.data>=newnode.data:
+
+            if rootelement.left==None:
+                rootelement.left=newnode
+            else:
+                insert_node(rootelement.left,newnode)
+
+        else:
+
+            if rootelement.right==None:
+                rootelement.right=newnode
+
+            else:
+                insert_node(rootelement.right,newnode)
+
+def inorder_traverse(root):
+
+    if(root!=None):
+        inorder_traverse(root.left)
+        print(root.data,end="==")
+        inorder_traverse(root.right)
+
+def preorder_traverse(root):
+
+    if(root!=None):
+        print(root.data, end="==")
+        preorder_traverse(root.left)
+        preorder_traverse(root.right)
+
+def postoder_traversel(root):
+
+    if(root!=None):
+        postoder_traversel(root.left)
+        postoder_traversel(root.right)
+        print(root.data,end="===")
+
+
+def levelOrder(root):
+    if root is None:
+        return []
+    result, current = [], [root]
+    while current:
+        next_level, vals = [], []
+        for node in current:
+            vals.append(node.data)
+            if node.left:
+                next_level.append(node.left)
+            if node.right:
+                next_level.append(node.right)
+        current = next_level
+        result.append(vals)
+    return result
+
+def search_element(root,data):
+    if root==None:
+        t=False
+    else:
+        if data == root.data:
+            return True
+        if data<root.data:
+            t=search_element(root.left,data)
+        else:
+            t=search_element(root.right,data)
+    return t
+
+
+def find_min_value(root):
+    current=root
+    # loop down to find the leftmost leaf
+    while current.left != None :
+        current=current.left
+
+    return current
+
+def delete_node(root,data):
+    #if no node is present
+    if root==None:
+        print("No element present in tree")
+
+
+    if data<root.data:
+        root.left=delete_node(root.left,data)
+
+    elif data>root.data:
+        root.right=delete_node(root.right,data)
+
+
+    #if equal or found that data
+    else:
+        #to delete leaf node
+        #to delete node with one child either left or right
+        if root.left == None:
+            temp= root.right
+            root=None
+            return temp
+        elif root.right == None:
+            temp = root.left
+            root=None
+            return temp
+
+
+            #means it has both the leaf
+            #then find min value in right subtree
+            #you can also find max value in lefr subtree too by defining another fun
+
+        temp= find_min_value(root.right)
+            #replace that value with root
+
+        root.data=temp.data
+            #now to delete temp from that position and assign new value there which
+            #was join with further that node
+
+        root.right=delete_node(root.right,temp.data)
+
+    return root
+
+
+
+n=node(30)
+insert_node(n,node(40))
+insert_node(n,node(50))
+
+insert_node(n,node(60))
+insert_node(n,node(25))
+insert_node(n,node(27))
+
+insert_node(n,node(15))
+
+inorder_traverse(n)
+print()
+preorder_traverse(n)
+print()
+postoder_traversel(n)
+print()
+#levelorder_traversel(n)
+print()
+res=levelOrder( n)
+print(res)
+min=find_min_value(n)
+print(min.data)
+ele=search_element(n,60)
+print(ele)
+
+delete_node(n,15)
+delete_node(n,30)
+#print(delt.data)
+inorder_traverse(n)
+print()
