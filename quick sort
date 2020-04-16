@@ -1,0 +1,51 @@
+a=[1,-1,0]
+
+def quicksort(a,lower_index,higher_index):
+
+    if lower_index<higher_index:
+
+        partition_index= partition(a,lower_index,higher_index)
+
+        #call for element less than pivot
+        quicksort(a, lower_index , partition_index-1)
+
+        #call for element greater than pivot
+        quicksort(a, partition_index+1 , higher_index)
+
+        #note we do partition+1 and partition-1 because after first call pivot is at
+        #its correct position and its position is partion index only hence
+        #above and below lists are passes to perform quick sort again
+
+
+def partition(a, lower_index , higher_index):
+
+    i=lower_index-1
+    pivot=a[higher_index]
+
+    for j in range(lower_index,higher_index):
+
+        if a[j] > pivot:
+
+            j+=1
+
+        else:
+
+            i+=1
+            a[i],a[j]=a[j],a[i]
+
+    a[i+1],a[higher_index]=a[higher_index],a[i+1]
+
+
+    #return partitioning position
+    return i+1
+
+quicksort(a,0,len(a)-1)
+print(a)
+
+
+
+When implemented well, it can be about two or three times faster than its main competitors, merge sort and heapsort
+
+Mathematical analysis of quicksort shows that, on average, the algorithm takes O(n log n) comparisons to sort n items. 
+In the worst case, it makes O(n2) comparisons, though this behavior is rare.
+
