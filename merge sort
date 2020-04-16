@@ -1,0 +1,65 @@
+a=[1,5,34,53,2,13,43]
+
+
+def merge(a,left_half,right_half):
+    i=0 #for left half
+    j=0 #for right half
+    k=0 #for full array
+
+    while i< len(left_half) and j < len(right_half):
+
+        if left_half[i] <= right_half [j]:
+            a[k]=left_half[i]
+            i+=1
+        else:
+            a[k]=right_half[j]
+            j+=1
+
+        k+=1
+
+
+    #if after this some element may remain in one of the half due to diff lengths
+
+    #if elements remain in left half
+    while(i<len(left_half)):
+        a[k]=left_half[i]
+        i+=1
+        k+=1
+    #if element remain in right half
+    while(j<len(right_half)):
+        a[k]=right_half[j]
+        j+=1
+        k+=1
+
+def dividelist(a):
+    # if only 1 element present inside list #base condition
+    #then return that element
+    if len(a)<2:
+        return a
+    #more than one element
+    else:
+
+        mid=len(a)//2
+        left_half=a[ :mid]
+        right_half=a[mid: ]
+
+        dividelist(left_half)
+        dividelist(right_half)
+
+        merge(a,left_half,right_half)
+
+    return a
+
+dividelist(a)
+print(a)
+
+
+
+
+
+note:
+
+Time complexity of Merge Sort is Theta(nLogn) in all 3 cases (worst, average and best) as merge sort always
+divides the array into two halves and take linear time to merge two halves.
+
+Auxiliary Space: O(n)
