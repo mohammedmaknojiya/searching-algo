@@ -1,0 +1,30 @@
+a=[2,3,4,2,1,5,0,7]
+
+for i in range(len(a)):
+    min_value_index = i
+
+    for j in range(i+1,len(a)):
+        if a[min_value_index]  > a[j] :
+            min_value_index=j
+
+    a[i],a[min_value_index]=a[min_value_index],a[i]
+print(a)
+
+
+time complexity:
+best case:B(n^2)
+worst case:O(n^2)
+best case:_n_(n^2)
+
+
+
+It has an O(n2) time complexity, which makes it inefficient on large lists.
+
+Selection sort is noted for its simplicity and has performance advantages over 
+more complicated algorithms in certain situations, particularly where auxiliary memory is limited.
+
+ One thing which distinguishes selection sort from other sorting algorithms is that it makes the minimum 
+ possible number of swaps, n − 1 in the worst case.
+ matlab jaisa isma hame pehla minimum value ka index find karta hai and then only usko swap marta hai.
+ na ki bubble sort ki tarah continuous swap marta hai.
+ kyu ki swap operation memory consuming hota hai 
