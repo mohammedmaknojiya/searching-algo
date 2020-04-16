@@ -1,0 +1,54 @@
+a=[1,1,1,1,1,12,3,322,12,32,4,3,3]
+
+#we decreament pass value after each pass because after each pass we get last element
+#at its perfect position
+
+#no of passes = length of ele -1
+
+for passes in range(len(a)-1,0,-1):
+    for i in range(len(a)-1):
+        if a[i]>a[i+1]:
+            a[i],a[i+1]=a[i+1],a[i]
+
+print(a)
+
+
+optimized one:
+a=[1,2,3,4]
+
+#we decreament pass value after each pass because after each pass we get last element
+#at its perfect position
+
+#no of passes = length of ele -1
+
+for passes in range(len(a)-1,0,-1):
+    swap=False
+    for i in range(len(a)-1):
+        if a[i]>a[i+1]:
+            a[i],a[i+1]=a[i+1],a[i]
+            swap=True
+    if swap==False:
+        break
+print(a)
+
+
+we create one varible swap and initizlize it with false value 
+now in each pass a swap is occured inside that then that value becomes True
+now after intializing next pass we first check if any swap occured in previous pass if yes then we continue otherwise break
+because if no pass occured in previous once means list is already sorted 
+
+The above function always runs O(n^2) time even if the array is sorted. 
+It can be optimized by stopping the algorithm if inner loop didn’t cause any swap.
+this will result is time complexity to get reduce from O(n^2) 
+
+
+in almost sorted array time complexity is O(2n)= O(n)
+
+
+Worst and Average Case Time Complexity: O(n*n). Worst case occurs when array is reverse sorted.
+
+Best Case Time Complexity: O(n). Best case occurs when array is already sorted.
+
+Auxiliary Space: O(1)
+
+Boundary Cases: Bubble sort takes minimum time (Order of n) when elements are already sorted
