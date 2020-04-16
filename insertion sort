@@ -1,0 +1,50 @@
+a=[1,1,1,1,1,12,3,322,12,32,4,3,3]
+
+for i in range(1,len(a)):
+    c=a[i]
+
+    for j in range(0,i):
+        if c < a[j] :
+            a[i],a[j]=a[j],a[i]
+
+
+print(a)
+
+
+note
+
+Insertion sort runs in O(n)time in its best case and runs in O(n^2) in its worst and average cases.
+
+Best Case Analysis:
+Insertion sort performs two operations: it scans through the list, comparing each pair of elements, and it swaps 
+elements if they are out of order. Each operation contributes to the running time of the algorithm.
+If the input array is already in sorted order, insertion sort compares O(n) elements and performs 
+no swaps (in the Python code above, the inner loop is never triggered). 
+Therefore, in the best case, insertion sort runs in O(n)O(n) time.
+
+Worst and Average Case Analysis:
+The worst case for insertion sort will occur when the input list is in decreasing order. 
+To insert the last element, we need at most n-1n−1 comparisons and at most n-1 swaps. 
+To insert the second to last element, we need at most n-2n−2 comparisons and at most n-2swaps,
+and so on. The number of operations needed to perform insertion sort is therefore:
+2*(1+2+.....+(n-2)+(n-1)). 
+To calculate the recurrence relation for this algorithm, use the following summation:
+summation of i=1 to n of(n)= n(n+1)/2
+
+Time Complexity: O(n*2)
+
+Auxiliary Space: O(1)
+
+Boundary Cases: Insertion sort takes maximum time to sort if elements are sorted in reverse order. 
+And it takes minimum time (Order of n) when elements are already sorted.
+
+Algorithmic Paradigm: Incremental Approach
+
+Sorting In Place: Yes
+
+Stable: Yes
+
+Online: Yes
+
+Uses: Insertion sort is used when number of elements is small. 
+It can also be useful when input array is almost sorted, only few elements are misplaced in complete big array.
